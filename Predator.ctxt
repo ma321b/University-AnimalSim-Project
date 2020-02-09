@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Predator
+comment0.text=\r\n\ Abstract\ class\ Predator\ -\ write\ a\ description\ of\ the\ class\ here\r\n\r\n\ @author\ (your\ name\ here)\r\n\ @version\ (version\ number\ or\ date\ here)\r\n
+comment1.params=field\ location
+comment1.target=Predator(Field,\ Location)
+comment2.params=newPredators
+comment2.target=void\ act(java.util.List)
+comment2.text=\r\n\ This\ is\ what\ the\ fox\ does\ most\ of\ the\ time\:\ it\ hunts\ for\r\n\ rabbits.\ In\ the\ process,\ it\ might\ breed,\ die\ of\ hunger,\r\n\ or\ die\ of\ old\ age.\r\n\ @param\ field\ The\ field\ currently\ occupied.\r\n\ @param\ newFoxes\ A\ list\ to\ return\ newly\ born\ foxes.\r\n
+comment3.params=newPredators
+comment3.target=void\ giveBirth(java.util.List)
+comment4.params=
+comment4.target=Location\ findFood()
+numComments=5

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Prey
+comment0.text=\r\n\ Abstract\ class\ Prey\ -\ write\ a\ description\ of\ the\ class\ here\r\n\r\n\ @author\ (your\ name\ here)\r\n\ @version\ (version\ number\ or\ date\ here)\r\n
+comment1.params=field\ location
+comment1.target=Prey(Field,\ Location)
+comment2.params=newPrey
+comment2.target=void\ act(java.util.List)
+comment3.params=newPredators
+comment3.target=void\ giveBirth(java.util.List)
+numComments=4

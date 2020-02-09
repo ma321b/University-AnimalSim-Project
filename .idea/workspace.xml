@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="02e75d6f-f291-40d1-a9e6-2c946ee0e2b6" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1XRCrAkXlVAiLVdhyF9kFKvZPn3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Simulator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Simulator" />
+      <module name="foxes-and-rabbits-handout" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Simulator" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="02e75d6f-f291-40d1-a9e6-2c946ee0e2b6" name="Default Changelist" comment="" />
+      <created>1580999715914</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580999715914</updated>
+      <workItem from="1580999717217" duration="1692000" />
+      <workItem from="1581013183952" duration="6891000" />
+      <workItem from="1581022691121" duration="91000" />
+      <workItem from="1581022972627" duration="606000" />
+      <workItem from="1581028289001" duration="67000" />
+      <workItem from="1581036976764" duration="1799000" />
+      <workItem from="1581093412928" duration="905000" />
+      <workItem from="1581120032221" duration="5705000" />
+      <workItem from="1581168258050" duration="20000" />
+      <workItem from="1581189342208" duration="666000" />
+      <workItem from="1581192740966" duration="1299000" />
+      <workItem from="1581260100312" duration="2498000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="371" y="97" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1581021695765">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="97" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1581021695765" />
+    <state x="316" y="56" key="FileChooserDialogImpl" timestamp="1581028353748">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="316" y="56" key="FileChooserDialogImpl/0.0.1280.680/1920.0.3440.1400@0.0.1280.680" timestamp="1580999743093" />
+    <state x="316" y="56" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581028353748" />
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1581194040704">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581194040704" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1581194040703">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581194040703" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1581194040703">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581194040703" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1581194040704">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581194040704" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1580999749148">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680/1920.0.3440.1400@0.0.1280.680" timestamp="1580999749148" />
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1581168258294">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581168258294" />
+  </component>
+</project>

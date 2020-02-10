@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02e75d6f-f291-40d1-a9e6-2c946ee0e2b6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Actor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Plant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FieldStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/FieldStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fox.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Predator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prey.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prey.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.TXT" beforeDir="false" afterPath="$PROJECT_DIR$/README.TXT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rabbit.java" beforeDir="false" afterPath="$PROJECT_DIR$/Rabbit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Raptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Raptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Simulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimulatorView.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimulatorView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Triceratops.java" beforeDir="false" afterPath="$PROJECT_DIR$/Triceratops.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/foxes-and-rabbits-handout/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/foxes-and-rabbits-handout/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/foxes-and-rabbits-handout/Simulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/foxes-and-rabbits-handout/Simulator.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +47,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SHARED - Assignment 3 - Testing" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -42,6 +57,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
     <configuration name="Simulator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -79,7 +95,10 @@
       <workItem from="1581189342208" duration="666000" />
       <workItem from="1581192740966" duration="1299000" />
       <workItem from="1581260100312" duration="4720000" />
-      <workItem from="1581269676548" duration="2235000" />
+      <workItem from="1581269718391" duration="4879000" />
+      <workItem from="1581299261846" duration="744000" />
+      <workItem from="1581302251000" duration="1690000" />
+      <workItem from="1581334600496" duration="7074000" />
     </task>
     <servers />
   </component>
@@ -96,39 +115,49 @@
       </list>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
     <state x="371" y="97" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1581021695765">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="97" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1581021695765" />
-    <state x="316" y="56" key="FileChooserDialogImpl" timestamp="1581269715124">
+    <state x="221" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581338558741">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="221" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1581338558741" />
+    <state x="316" y="56" key="FileChooserDialogImpl" timestamp="1581028353748">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="316" y="56" key="FileChooserDialogImpl/0.0.1280.680/1920.0.3440.1400@0.0.1280.680" timestamp="1580999743093" />
-    <state x="316" y="56" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581269715124" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1581298624566">
+    <state x="316" y="56" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581028353748" />
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1581342662061">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581298624566" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1581298624566">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581342662061" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1581342662061">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581298624566" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1581298624566">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581342662061" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1581342662061">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581298624566" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1581298624566">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581342662061" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1581342662061">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581298624566" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1580999749148">
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581342662061" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1581269741351">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680/1920.0.3440.1400@0.0.1280.680" timestamp="1580999749148" />
-    <state x="336" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1581269684444">
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1581269741351" />
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1581348969470">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="336" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581269684444" />
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581348969470" />
   </component>
 </project>

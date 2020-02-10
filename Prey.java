@@ -13,7 +13,7 @@ public abstract class Prey extends Animal
         super(field, location);
     }
     
-    public void act(List<Animal> newPrey)
+    public void act(List<Actor> newPrey)
     {
         if(isAlive()) {
             giveBirth(newPrey);           
@@ -29,6 +29,6 @@ public abstract class Prey extends Animal
         }
     }
 
-    abstract public void giveBirth(List<Animal> newPredators);
+    abstract public void giveBirth(List<Actor> newPredators);
     
 }

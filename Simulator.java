@@ -1,3 +1,4 @@
+import java.sql.Time;
 import java.util.*;
 import java.awt.Color;
 
@@ -10,29 +11,35 @@ import java.awt.Color;
  */
 public class Simulator
 {
+    public static void main(String[] args) {
+        Simulator s = new Simulator();
+        s.runLongSimulation();
+    }
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
     private static final int DEFAULT_WIDTH = 120;
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
     // The probability that a fox will be created in any given grid position.
-    private static final double FOX_CREATION_PROBABILITY = 0.02;
+    private static final double FOX_CREATION_PROBABILITY = 0.04;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.08;
-
-    private static final double RAPTOR_CREATION_PROBABILITY = 0.01;
-
+    private static final double RABBIT_CREATION_PROBABILITY = 0.06;
+    
+    private static final double RAPTOR_CREATION_PROBABILITY = 0.05;
+    
     private static final double TRICERATOPS_CREATION_PROBABILITY = 0.05;
 
+    private static final double PLANT_CREATION_PROBABILITY = 0.1;
+
     // List of animals in the field.
-    private List<Animal> animals;
+    private List<Actor> actors;
     // The current state of the field.
     private Field field;
     // A graphical view of the simulation.
     private SimulatorView view;
 
     private TimeTrack time;
-
+    
     /**
      * Construct a simulation field with default size.
      */
@@ -40,7 +47,7 @@ public class Simulator
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
     }
-
+    
     /**
      * Create a simulation field with the given size.
      * @param depth Depth of the field. Must be greater than zero.
@@ -55,8 +62,8 @@ public class Simulator
             depth = DEFAULT_DEPTH;
             width = DEFAULT_WIDTH;
         }
-
-        animals = new ArrayList<>();
+        
+        actors = new ArrayList<>();
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.
@@ -65,10 +72,11 @@ public class Simulator
         view.setColor(Fox.class, Color.BLUE);
         view.setColor(Raptor.class, Color.CYAN);
         view.setColor(Triceratops.class, Color.MAGENTA);
+        view.setColor(Plant.class, Color.GREEN);
         // Setup a valid starting point.
         reset();
     }
-
+    
     /**
      * Run the simulation from its current state for a reasonably long period,
      * (4000 steps).
@@ -77,7 +85,7 @@ public class Simulator
     {
         simulate(4000);
     }
-
+    
     /**
      * Run the simulation from its current state for the given number of steps.
      * Stop before the given number of steps if it ceases to be viable.
@@ -90,7 +98,7 @@ public class Simulator
             // delay(60);   // uncomment this to run more slowly
         }
     }
-
+    
     /**
      * Run the simulation from its current state for a single step.
      * Iterate over the whole field updating the state of each
@@ -103,23 +111,31 @@ public class Simulator
         time.setCurrentTime();
 
         // Provide space for newborn animals.
-        List<Animal> newAnimals = new ArrayList<>();
+        List<Actor> newActors = new ArrayList<>();
         // Let all rabbits act.
-        for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
-            Animal animal = it.next();
-            animal.act(newAnimals);
-            if(! animal.isAlive()) {
+        for(Iterator<Actor> it = actors.iterator(); it.hasNext(); ) {
+            Actor actor = it.next();
+            if (TimeTrack.getIsDay()) {
+                // all animals act during the day
+                actor.act(newActors);
+            }
+            else if (!TimeTrack.getIsDay()) {
+                if (actor instanceof Prey) {
+                    // only the preys move during the night
+                    actor.act(newActors);
+                }
+            }
+            if(! actor.isAlive()) {
                 it.remove();
             }
         }
-
+               
         // Add the newly born foxes and rabbits to the main lists.
-        animals.addAll(newAnimals);
+        actors.addAll(newActors);
 
         view.showStatus(TimeTrack.getStep(), field);
-        System.out.println(TimeTrack.getCurrentTime());
     }
-
+        
     /**
      * Reset the simulation to a starting position.
      */
@@ -129,13 +145,13 @@ public class Simulator
         TimeTrack.setStep(0);
         time.setCurrentTime();
 
-        animals.clear();
+        actors.clear();
         populate();
-
+        
         // Show the starting state in the view.
         view.showStatus(TimeTrack.getStep(), field);
     }
-
+    
     /**
      * Randomly populate the field with foxes and rabbits.
      */
@@ -148,29 +164,35 @@ public class Simulator
                 if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Fox fox = new Fox(true, field, location);
-                    animals.add(fox);
+                    actors.add(fox);
                 }
                 else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Rabbit rabbit = new Rabbit(true, field, location);
-                    animals.add(rabbit);
+                    actors.add(rabbit);
                 }
                 else if(rand.nextDouble() <= RAPTOR_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Raptor raptor = new Raptor(true, field, location);
-                    animals.add(raptor);
-                    // else leave the location empty.
+                    actors.add(raptor);
+                // else leave the location empty.
                 }
                 else if(rand.nextDouble() <= TRICERATOPS_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Triceratops triceratops = new Triceratops(true, field, location);
-                    animals.add(triceratops);
+                    actors.add(triceratops);
+                // else leave the location empty.
+                }
+                else if(rand.nextDouble() <= PLANT_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Plant plant = new Plant(field, location);
+                    actors.add(plant);
                     // else leave the location empty.
                 }
             }
         }
     }
-
+    
     /**
      * Pause for a given time.
      * @param millisec  The time to pause for, in milliseconds

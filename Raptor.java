@@ -12,16 +12,16 @@ public class Raptor extends Predator
     // Characteristics shared by all foxes (class variables).
     
     // The age at which a fox can start to breed.
-    private static final int BREEDING_AGE = 5;
+    private static final int BREEDING_AGE = 6;
     // The age to which a fox can live.
-    private static final int MAX_AGE = 150;
+    private static final int MAX_AGE = 80;
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.09;
+    private static final double BREEDING_PROBABILITY = 0.15;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 2;
+    private static final int MAX_LITTER_SIZE = 8;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 9;
+    private static final int RABBIT_FOOD_VALUE = 10;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -58,7 +58,7 @@ public class Raptor extends Predator
      * or die of old age.
      * @param newRaptors A list to return newly born foxes.
      */
-    public void act(List<Animal> newRaptors)
+    public void act(List<Actor> newRaptors)
     {
         incrementAge();
         incrementHunger();
@@ -116,7 +116,7 @@ public class Raptor extends Predator
      * New births will be made into free adjacent locations.
      * @param newRaptors A list to return newly born foxes.
      */
-    public void giveBirth(List<Animal> newRaptors)
+    public void giveBirth(List<Actor> newRaptors)
     {
         // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.
@@ -128,6 +128,7 @@ public class Raptor extends Predator
             Raptor young = new Raptor(false, field, loc);
             newRaptors.add(young);
         }
+        System.out.println("raptor births" + births);
     }
         
     /**

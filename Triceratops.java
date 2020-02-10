@@ -13,13 +13,13 @@ public class Triceratops extends Prey
     // Characteristics shared by all rabbits (class variables).
 
     // The age at which a rabbit can start to breed.
-    private static final int BREEDING_AGE = 7;
+    private static final int BREEDING_AGE = 5;
     // The age to which a rabbit can live.
-    private static final int MAX_AGE = 40;
+    private static final int MAX_AGE = 60;
     // The likelihood of a rabbit breeding.
     private static final double BREEDING_PROBABILITY = 0.15;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 6;
+    private static final int MAX_LITTER_SIZE = 9;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -50,7 +50,7 @@ public class Triceratops extends Prey
      * around. Sometimes it will breed or die of old age.
      * @param newTriceratops A list to return newly born rabbits.
      */
-    public void act(List<Animal> newTriceratops)
+    public void act(List<Actor> newTriceratops)
     {
         incrementAge();
         if(isAlive()) {
@@ -84,7 +84,7 @@ public class Triceratops extends Prey
      * New births will be made into free adjacent locations.
      * @param newTriceratops A list to return newly born rabbits.
      */
-    public void giveBirth(List<Animal> newTriceratops)
+    public void giveBirth(List<Actor> newTriceratops)
     {
         // New rabbits are born into adjacent locations.
         // Get a list of adjacent free locations.

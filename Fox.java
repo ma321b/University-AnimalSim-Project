@@ -20,7 +20,7 @@ public class Fox extends Predator
     // The likelihood of a fox breeding.
     private static final double BREEDING_PROBABILITY = 0.08;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 2;
+    private static final int MAX_LITTER_SIZE = 6;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
     private static final int RABBIT_FOOD_VALUE = 9;
@@ -60,7 +60,7 @@ public class Fox extends Predator
      * or die of old age.
      * @param newFoxes A list to return newly born foxes.
      */
-    public void act(List<Animal> newFoxes)
+    public void act(List<Actor> newFoxes)
     {
         incrementAge();
         incrementHunger();
@@ -118,7 +118,7 @@ public class Fox extends Predator
      * New births will be made into free adjacent locations.
      * @param newFoxes A list to return newly born foxes.
      */
-    public void giveBirth(List<Animal> newFoxes)
+    public void giveBirth(List<Actor> newFoxes)
     {
         // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.

@@ -10,7 +10,7 @@ import java.util.HashSet;
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29 (2)
  */
-public abstract class Animal
+public abstract class Animal extends Actor
 {
     // Whether the animal is alive or not.
     private boolean alive;
@@ -39,9 +39,9 @@ public abstract class Animal
     /**
      * Make this animal act - that is: make it do
      * whatever it wants/needs to do.
-     * @param newAnimals A list to receive newly born animals.
+     * @param newActors A list to receive newly born animals.
      */
-    abstract public void act(List<Animal> newAnimals);
+    abstract public void act(List<Actor> newActors);
 
     /**
      * Check whether the animal is alive or not.

@@ -19,23 +19,20 @@ public class Simulator
     private static final double FOX_CREATION_PROBABILITY = 0.02;
     // The probability that a rabbit will be created in any given grid position.
     private static final double RABBIT_CREATION_PROBABILITY = 0.08;
-    
+
     private static final double RAPTOR_CREATION_PROBABILITY = 0.01;
-    
+
     private static final double TRICERATOPS_CREATION_PROBABILITY = 0.05;
 
     // List of animals in the field.
     private List<Animal> animals;
     // The current state of the field.
     private Field field;
-    // The current step of the simulation.
-    private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
-    // The current time in the simulation.
-    private int currentTime;
-    private boolean isDay;
-    
+
+    private TimeTrack time;
+
     /**
      * Construct a simulation field with default size.
      */
@@ -43,7 +40,7 @@ public class Simulator
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
     }
-    
+
     /**
      * Create a simulation field with the given size.
      * @param depth Depth of the field. Must be greater than zero.
@@ -51,15 +48,14 @@ public class Simulator
      */
     public Simulator(int depth, int width)
     {
-        isDay = false;
-        currentTime = 0;
+        time = new TimeTrack();
         if(width <= 0 || depth <= 0) {
             System.out.println("The dimensions must be greater than zero.");
             System.out.println("Using default values.");
             depth = DEFAULT_DEPTH;
             width = DEFAULT_WIDTH;
         }
-        
+
         animals = new ArrayList<>();
         field = new Field(depth, width);
 
@@ -72,7 +68,7 @@ public class Simulator
         // Setup a valid starting point.
         reset();
     }
-    
+
     /**
      * Run the simulation from its current state for a reasonably long period,
      * (4000 steps).
@@ -81,7 +77,7 @@ public class Simulator
     {
         simulate(4000);
     }
-    
+
     /**
      * Run the simulation from its current state for the given number of steps.
      * Stop before the given number of steps if it ceases to be viable.
@@ -94,7 +90,7 @@ public class Simulator
             // delay(60);   // uncomment this to run more slowly
         }
     }
-    
+
     /**
      * Run the simulation from its current state for a single step.
      * Iterate over the whole field updating the state of each
@@ -102,11 +98,12 @@ public class Simulator
      */
     public void simulateOneStep()
     {
-        step++;
-        setCurrentTime();
+//        step++;
+        TimeTrack.incrementStep();
+        time.setCurrentTime();
 
         // Provide space for newborn animals.
-        List<Animal> newAnimals = new ArrayList<>();        
+        List<Animal> newAnimals = new ArrayList<>();
         // Let all rabbits act.
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
@@ -115,28 +112,30 @@ public class Simulator
                 it.remove();
             }
         }
-               
+
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
-        view.showStatus(step, field);
+        view.showStatus(TimeTrack.getStep(), field);
+        System.out.println(TimeTrack.getCurrentTime());
     }
-        
+
     /**
      * Reset the simulation to a starting position.
      */
     public void reset()
     {
-        step = 0;
-        setCurrentTime();
+        // step = 0;
+        TimeTrack.setStep(0);
+        time.setCurrentTime();
 
         animals.clear();
         populate();
-        
+
         // Show the starting state in the view.
-        view.showStatus(step, field);
+        view.showStatus(TimeTrack.getStep(), field);
     }
-    
+
     /**
      * Randomly populate the field with foxes and rabbits.
      */
@@ -160,18 +159,18 @@ public class Simulator
                     Location location = new Location(row, col);
                     Raptor raptor = new Raptor(true, field, location);
                     animals.add(raptor);
-                // else leave the location empty.
+                    // else leave the location empty.
                 }
                 else if(rand.nextDouble() <= TRICERATOPS_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Triceratops triceratops = new Triceratops(true, field, location);
                     animals.add(triceratops);
-                // else leave the location empty.
+                    // else leave the location empty.
                 }
             }
         }
     }
-    
+
     /**
      * Pause for a given time.
      * @param millisec  The time to pause for, in milliseconds
@@ -184,50 +183,5 @@ public class Simulator
         catch (InterruptedException ie) {
             // wake up
         }
-    }
-
-    /**
-     * Increments the currentTime in the simulation.
-     */
-    private void incrementCurrentTime()
-    {
-        if (currentTime < 23) {
-            currentTime++;
-        }
-        else {
-            // Rollback
-            currentTime = 0;
-        }
-    }
-
-    /**
-     * Set the current time in simulation
-     * according to the step of the simulation
-     * we're currently in. An hour is 250 steps
-     * long in our simulation.
-     */
-    private void setCurrentTime()
-    {
-        if (step % 250 == 0) {
-            incrementCurrentTime();
-        }
-        setDayOrNight();
-    }
-
-    /**
-     * Set the time of the day as true or false
-     * corresponding to the current time in the simulation.
-     */
-    private void setDayOrNight()
-    {
-        isDay = currentTime >= 5 && currentTime <= 18;
-    }
-
-    /**
-     * @return The current hour in the simulation.
-     */
-    public int getCurrentTime()
-    {
-        return currentTime;
     }
 }

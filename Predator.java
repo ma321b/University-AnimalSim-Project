@@ -22,24 +22,22 @@ public abstract class Predator extends Animal
      */
     public void act(List<Actor> newPredators)
     {
-
-            if (isAlive()) {
-                giveBirth(newPredators);
-                // Move towards a source of food if found.
-                Location newLocation = findFood();
-                if (newLocation == null) {
-                    // No food found - try to move to a free location.
-                    newLocation = getField().freeAdjacentLocation(getLocation());
-                }
-                // See if it was possible to move.
-                if (newLocation != null) {
-                    setLocation(newLocation);
-                } else {
-                    // Overcrowding.
-                    setDead();
-                }
+        if (isAlive()) {
+            giveBirth(newPredators);
+            // Move towards a source of food if found.
+            Location newLocation = findFood();
+            if (newLocation == null) {
+                // No food found - try to move to a free location.
+                newLocation = getField().freeAdjacentLocation(getLocation());
             }
-
+            // See if it was possible to move.
+            if (newLocation != null) {
+                setLocation(newLocation);
+            } else {
+                // Overcrowding.
+                setDead();
+            }
+        }
     }
 
     abstract public void giveBirth(List<Actor> newPredators);

@@ -128,7 +128,6 @@ public class Raptor extends Predator
             Raptor young = new Raptor(false, field, loc);
             newRaptors.add(young);
         }
-        System.out.println("raptor births" + births);
     }
         
     /**

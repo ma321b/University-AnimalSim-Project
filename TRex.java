@@ -1,73 +1,73 @@
 import java.util.List;
-import java.util.Iterator;
 import java.util.Random;
 
 /**
- * A simple model of a fox.
- * Foxes age, move, eat rabbits, and die.
- * 
+ * A simple model of a tRex.
+ * TRex age, move, eat stegosauruses, and die.
+ *
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29 (2)
  */
-public class Fox extends Predator
+public class TRex extends Predator
 {
-    // Characteristics shared by all foxes (class variables).
-    
-    // The age at which a fox can start to breed.
+    // Characteristics shared by all tRexes (class variables).
+
+    // The age at which a tRex can start to breed.
     private static final int BREEDING_AGE = 8;
-    // The age to which a fox can live.
     private static final int MAX_AGE = 150;
-    // The likelihood of a fox breeding.
+    // The likelihood of a tRex breeding.
     private static final double BREEDING_PROBABILITY = 0.08;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 6;
-    // The food value of a single rabbit. In effect, this is the
-    // number of steps a fox can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 9;
+    // The food value of a single stegosaurus. In effect, this is the
+    // number of steps a tRex can go before it has to eat again.
+    private static final int PREY_FOOD_VALUE = 9;
+
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    
+
     // Individual characteristics (instance fields).
-    // The fox's age.
+
+    // The tRex's age.
     private int age;
-    // The fox's food level, which is increased by eating rabbits.
+    // The tRex's food level, which is increased by eating stegosauruss.
     private int foodLevel;
 
     /**
-     * Create a fox. A fox can be created as a new born (age zero
+     * Create a tRex. A tRex can be created as a new born (age zero
      * and not hungry) or with a random age and food level.
-     * 
-     * @param randomAge If true, the fox will have random age and hunger level.
+     *
+     * @param randomAge If true, the tRex will have random age and hunger level.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Fox(boolean randomAge, Field field, Location location)
+    public TRex(boolean randomAge, Field field, Location location)
     {
         super(field, location);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
-            foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
+            foodLevel = rand.nextInt(PREY_FOOD_VALUE);
         }
         else {
             age = 0;
-            foodLevel = RABBIT_FOOD_VALUE;
+            foodLevel = PREY_FOOD_VALUE;
         }
     }
-    
+
     /**
-     * This is what the fox does most of the time: it hunts for
-     * rabbits. In the process, it might breed, die of hunger,
+     * This is what the tRex does most of the time: it hunts for
+     * Stegosauruses. In the process, it might breed, die of hunger,
      * or die of old age.
-     * @param newFoxes A list to return newly born foxes.
+     * @param newTRexes A list to return newly born tRexes.
      */
-    public void act(List<Actor> newFoxes)
+    public void act(List<Actor> newTRexes)
     {
         incrementAge();
         incrementHunger();
-        super.act(newFoxes);
+        super.act(newTRexes);
     }
     /**
-     * Increase the age. This could result in the fox's death.
+     * Increase the age. This could result in the tRex's death.
      */
     private void incrementAge()
     {
@@ -76,9 +76,9 @@ public class Fox extends Predator
             setDead();
         }
     }
-    
+
     /**
-     * Make this fox more hungry. This could result in the fox's death.
+     * Make this tRex more hungry. This could result in the tRex's death.
      */
     private void incrementHunger()
     {
@@ -87,51 +87,31 @@ public class Fox extends Predator
             setDead();
         }
     }
-    
+
     /**
-     * Look for rabbits adjacent to the current location.
-     * Only the first live rabbit is eaten.
-     * @return Where food was found, or null if it wasn't.
-     */
-    public Location findFood()
-    {
-        Field field = getField();
-        List<Location> adjacent = field.adjacentLocations(getLocation());
-        Iterator<Location> it = adjacent.iterator();
-        while(it.hasNext()) {
-            Location where = it.next();
-            Object animal = field.getObjectAt(where);
-            if(animal instanceof Prey) {
-                Prey prey = (Prey) animal;
-                if(prey.isAlive()) { 
-                    prey.setDead();
-                    foodLevel = RABBIT_FOOD_VALUE;
-                    return where;
-                }
-            }
-        }
-        return null;
-    }
-    
-    /**
-     * Check whether or not this fox is to give birth at this step.
+     * Check whether or not this tRex is to give birth at this step.
      * New births will be made into free adjacent locations.
-     * @param newFoxes A list to return newly born foxes.
+     * @param newTRexes A list to return newly born tRexes.
      */
-    public void giveBirth(List<Actor> newFoxes)
+    public void giveBirth(List<Actor> newTRexes)
     {
-        // New foxes are born into adjacent locations.
+        // New tRexes are born into adjacent locations.
         // Get a list of adjacent free locations.
         Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Fox young = new Fox(false, field, loc);
-            newFoxes.add(young);
+            TRex young = new TRex(false, field, loc);
+            newTRexes.add(young);
         }
     }
-        
+
+    public void satisfyHunger()
+    {
+        foodLevel += PREY_FOOD_VALUE;
+    }
+
     /**
      * Generate a number representing the number of births,
      * if it can breed.
@@ -147,7 +127,7 @@ public class Fox extends Predator
     }
 
     /**
-     * A fox can breed if it has reached the breeding age.
+     * A tRex can breed if it has reached the breeding age.
      */
     private boolean canBreed()
     {
@@ -164,7 +144,7 @@ public class Fox extends Predator
         List<Location> adjacent = field.adjacentLocations(getLocation());
         for (Location where : adjacent) {
             Object animal = field.getObjectAt(where);
-            if (age >= BREEDING_AGE && animal instanceof Fox) {
+            if (age >= BREEDING_AGE && animal instanceof TRex) {
                 if (((Animal) animal).isMale() != this.isMale()) {
                     return true;
                 }

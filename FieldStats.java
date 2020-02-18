@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public class FieldStats
 {
-    // Counters for each type of entity (fox, rabbit, etc.) in the simulation.
+    // Counters for each type of entity (tRex, stegosaurus, etc.) in the simulation.
     private HashMap<Class, Counter> counters;
     // Whether the counters are currently up to date.
     private boolean countsValid;
@@ -106,8 +106,8 @@ public class FieldStats
     }
     
     /**
-     * Generate counts of the number of foxes and rabbits.
-     * These are not kept up to date as foxes and rabbits
+     * Generate counts of the number of tRexes and stegosauruss.
+     * These are not kept up to date as tRexes and stegosauruss
      * are placed in the field, but only when a request
      * is made for the information.
      * @param field The field to generate the stats for.

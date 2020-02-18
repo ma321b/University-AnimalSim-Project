@@ -10,29 +10,32 @@ import java.util.Random;
  */
 public class Triceratops extends Prey
 {
-    // Characteristics shared by all rabbits (class variables).
+    // Characteristics shared by all stegosauruss (class variables).
 
-    // The age at which a rabbit can start to breed.
+    // The age at which a stegosaurus can start to breed.
     private static final int BREEDING_AGE = 5;
-    // The age to which a rabbit can live.
+    // The age to which a stegosaurus can live.
     private static final int MAX_AGE = 60;
-    // The likelihood of a rabbit breeding.
+    // The likelihood of a stegosaurus breeding.
     private static final double BREEDING_PROBABILITY = 0.15;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 9;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    
+
     // Individual characteristics (instance fields).
-    
-    // The rabbit's age.
+    private static final int PLANT_FOOD_VALUE = 10;
+
+    // The stegosaurus's age.
     private int age;
 
+    private int foodLevel;
+
     /**
-     * Create a new rabbit. A rabbit may be created with age
+     * Create a new stegosaurus. A stegosaurus may be created with age
      * zero (a new born) or with a random age.
-     * 
-     * @param randomAge If true, the rabbit will have a random age.
+     *
+     * @param randomAge If true, the stegosaurus will have a random age.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
@@ -44,17 +47,18 @@ public class Triceratops extends Prey
             age = rand.nextInt(MAX_AGE);
         }
     }
-    
+
     /**
-     * This is what the rabbit does most of the time - it runs 
+     * This is what the stegosaurus does most of the time - it runs
      * around. Sometimes it will breed or die of old age.
-     * @param newTriceratops A list to return newly born rabbits.
+     * @param newTriceratops A list to return newly born stegosauruss.
      */
     public void act(List<Actor> newTriceratops)
     {
         incrementAge();
         if(isAlive()) {
-            giveBirth(newTriceratops);           
+            giveBirth(newTriceratops);
+            super.findFood();
             // Try to move into a free location.
             Location newLocation = getField().freeAdjacentLocation(getLocation());
             if(newLocation != null) {
@@ -69,7 +73,7 @@ public class Triceratops extends Prey
 
     /**
      * Increase the age.
-     * This could result in the rabbit's death.
+     * This could result in the stegosaurus's death.
      */
     private void incrementAge()
     {
@@ -78,15 +82,15 @@ public class Triceratops extends Prey
             setDead();
         }
     }
-    
+
     /**
-     * Check whether or not this rabbit is to give birth at this step.
+     * Check whether or not this stegosaurus is to give birth at this step.
      * New births will be made into free adjacent locations.
-     * @param newTriceratops A list to return newly born rabbits.
+     * @param newTriceratops A list to return newly born stegosauruss.
      */
     public void giveBirth(List<Actor> newTriceratops)
     {
-        // New rabbits are born into adjacent locations.
+        // New stegosauruss are born into adjacent locations.
         // Get a list of adjacent free locations.
         Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
@@ -97,7 +101,7 @@ public class Triceratops extends Prey
             newTriceratops.add(young);
         }
     }
-        
+
     /**
      * Generate a number representing the number of births,
      * if it can breed.
@@ -113,12 +117,16 @@ public class Triceratops extends Prey
     }
 
     /**
-     * A rabbit can breed if it has reached the breeding age.
-     * @return true if the rabbit can breed, false otherwise.
+     * A stegosaurus can breed if it has reached the breeding age.
+     * @return true if the stegosaurus can breed, false otherwise.
      */
     private boolean canBreed()
     {
         return age >= BREEDING_AGE && mate();
+    }
+
+    public void satisfyHunger(){
+        foodLevel += PLANT_FOOD_VALUE;
     }
 
     /**

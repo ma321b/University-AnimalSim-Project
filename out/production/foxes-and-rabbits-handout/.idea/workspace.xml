@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02e75d6f-f291-40d1-a9e6-2c946ee0e2b6" name="Default Changelist" comment="Added a superclass &quot;Actor&quot; to contain all the actors in the simulation + added plants on the scene which are colored green + made the predators to stay (not move) when it is night i.e., when the isDay property is false">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Predator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimulatorView.java" beforeDir="false" afterPath="$PROJECT_DIR$/SimulatorView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TimeTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/TimeTrack.java" afterDir="false" />
-    </list>
+    <list default="true" id="02e75d6f-f291-40d1-a9e6-2c946ee0e2b6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,19 +80,21 @@
       <workItem from="1581269718391" duration="4879000" />
       <workItem from="1581299261846" duration="744000" />
       <workItem from="1581302251000" duration="1690000" />
-      <workItem from="1581334600496" duration="7074000" />
-      <workItem from="1581348966356" duration="508000" />
-      <workItem from="1581374686855" duration="2436000" />
-      <workItem from="1581550160359" duration="470000" />
+      <workItem from="1581334600496" duration="7404000" />
+      <workItem from="1581380988319" duration="614000" />
+      <workItem from="1581428967802" duration="10153000" />
+      <workItem from="1581550126501" duration="867000" />
+      <workItem from="1581551497010" duration="5253000" />
+      <workItem from="1581557452630" duration="88000" />
+      <workItem from="1581599551179" duration="3624000" />
+      <workItem from="1581630427224" duration="1323000" />
+      <workItem from="1581858898024" duration="4972000" />
+      <workItem from="1581888933974" duration="1627000" />
+      <workItem from="1581970131615" duration="36000" />
+      <workItem from="1581989098290" duration="85000" />
+      <workItem from="1582025145265" duration="407000" />
+      <workItem from="1582042107756" duration="275000" />
     </task>
-    <task id="LOCAL-00001" summary="Added a superclass &quot;Actor&quot; to contain all the actors in the simulation + added plants on the scene which are colored green + made the predators to stay (not move) when it is night i.e., when the isDay property is false">
-      <created>1581349113711</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1581349113711</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,51 +114,57 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Added a superclass &quot;Actor&quot; to contain all the actors in the simulation + added plants on the scene which are colored green + made the predators to stay (not move) when it is night i.e., when the isDay property is false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a superclass &quot;Actor&quot; to contain all the actors in the simulation + added plants on the scene which are colored green + made the predators to stay (not move) when it is night i.e., when the isDay property is false" />
   </component>
   <component name="WindowStateProjectService">
     <state x="371" y="97" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1581021695765">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="97" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1581021695765" />
-    <state x="221" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581338558741">
+    <state x="221" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581601434515">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="221" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1581338558741" />
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1581349180722">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1581349180722" />
+    <state x="221" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1581601434515" />
     <state x="316" y="56" key="FileChooserDialogImpl" timestamp="1581028353748">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="316" y="56" key="FileChooserDialogImpl/0.0.1280.680/1920.0.3440.1400@0.0.1280.680" timestamp="1580999743093" />
     <state x="316" y="56" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581028353748" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1581342662061">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1582042429703">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581342662061" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1581342662061">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582042429703" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1582042429703">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581342662061" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1581342662061">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582042429703" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1582042429702">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581342662061" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1581342662061">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582042429702" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1582042429703">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581342662061" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582042429703" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1581269741351">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680/1920.0.3440.1400@0.0.1280.680" timestamp="1580999749148" />
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1581269741351" />
-    <state x="336" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1581374691166">
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1581970135076">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="336" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581374691166" />
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581970135076" />
+    <state x="336" y="72" width="838" height="606" key="find.popup" timestamp="1581889133841">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="336" y="72" width="838" height="606" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1581889133841" />
+    <state x="348" y="0" key="scopes" timestamp="1581880121576">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="348" y="0" key="scopes/0.0.1280.680@0.0.1280.680" timestamp="1581880121576" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1581554879733">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1581554879733" />
   </component>
 </project>

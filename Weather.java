@@ -1,36 +1,63 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.Random;
 
 public class Weather
 {
-    private Map<Integer, String> weatherMap;
+    private static Random rand;
+    private static List<String> weatherList;
+    private static String currentWeather;
 
     public Weather()
     {
-        weatherMap = new HashMap<>();
+        rand = new Random();
+        weatherList = new ArrayList<>();
+        initialiseWeatherList();
+        setRandomWeather();
     }
 
     /**
      * Initialise the Map, mapping integers
      * to different weather types.
      */
-    private void setWeatherList()
+    private void initialiseWeatherList()
     {
-        weatherMap.put(0, "Sunny");
-        weatherMap.put(1, "Cloudy");
-        weatherMap.put(2, "Rainy");
-        weatherMap.put(3, "Foggy");
-        weatherMap.put(4, "Storm");
+        weatherList.add("Sunny");
+        weatherList.add("Cloudy");
+        weatherList.add("Rainy");
+        weatherList.add("Foggy");
+        weatherList.add("Storm");
     }
 
     /**
-     * Return the desired weather from the HashMap.
-     * @param keyInteger The key to weather String.
-     * @return The weather of type String.
+     * Set a random weather in the simulation
+     * (out of a list of all the weather types available)
      */
-    public String getWeather(int keyInteger)
+    private static void setRandomWeather()
     {
-        return weatherMap.get(keyInteger);
+        int randomNum = rand.nextInt(weatherList.size());
+        currentWeather = weatherList.get(randomNum);
+    }
+
+    /**
+     * Changes the current weather and sets a
+     * random weather randomly, after every 10 steps in the simulation
+     * (i.e., not always, so as to implement an entirely random behaviour).
+     */
+    public static void changeWeather()
+    {
+        if (TimeTrack.getStep() % 100 == 0) {
+            if (rand.nextBoolean()) {
+                setRandomWeather();
+            }
+        }
+    }
+
+    /**
+     * @return The current weather in the simulation
+     */
+    public static String getCurrentWeather()
+    {
+        return currentWeather;
     }
 }

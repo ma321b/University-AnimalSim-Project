@@ -1,4 +1,4 @@
-Project: foxes-and-rabbits-v2
+Project: tRexes-and-stegosauruss-v2
 Authors: Michael Kölling and David J. Barnes
 
 This project is part of the material for chapter 10 of the book
@@ -8,7 +8,7 @@ This project is part of the material for chapter 10 of the book
    David J. Barnes and Michael Kölling
    Pearson Education, 2016
 
-A predator-prey simulation involving foxes and rabbits in
+A predator-prey simulation involving tRexes and stegosauruss in
 an enclosed rectangular field.
 
 This is the first version of the simulation. This version

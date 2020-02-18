@@ -1,11 +1,10 @@
-import java.sql.Time;
 import java.util.*;
 import java.awt.Color;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field
- * containing rabbits and foxes.
- *
+ * containing stegosauruss and tRexes.
+ * 
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29 (2)
  */
@@ -20,13 +19,13 @@ public class Simulator
     private static final int DEFAULT_WIDTH = 120;
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
-    // The probability that a fox will be created in any given grid position.
-    private static final double FOX_CREATION_PROBABILITY = 0.04;
-    // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.06;
-
+    // The probability that a tRex will be created in any given grid position.
+    private static final double tRex_CREATION_PROBABILITY = 0.04;
+    // The probability that a stegosaurus will be created in any given grid position.
+    private static final double stegosaurus_CREATION_PROBABILITY = 0.06;
+    
     private static final double RAPTOR_CREATION_PROBABILITY = 0.05;
-
+    
     private static final double TRICERATOPS_CREATION_PROBABILITY = 0.05;
 
     private static final double PLANT_CREATION_PROBABILITY = 0.1;
@@ -37,9 +36,11 @@ public class Simulator
     private Field field;
     // A graphical view of the simulation.
     private SimulatorView view;
-
+    // Simulation's time/date/day info.
     private TimeTrack time;
-
+    // The weather in the simulation.
+    private Weather weather;
+    
     /**
      * Construct a simulation field with default size.
      */
@@ -47,7 +48,7 @@ public class Simulator
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
     }
-
+    
     /**
      * Create a simulation field with the given size.
      * @param depth Depth of the field. Must be greater than zero.
@@ -55,6 +56,7 @@ public class Simulator
      */
     public Simulator(int depth, int width)
     {
+        weather = new Weather();
         time = new TimeTrack();
         if(width <= 0 || depth <= 0) {
             System.out.println("The dimensions must be greater than zero.");
@@ -62,21 +64,21 @@ public class Simulator
             depth = DEFAULT_DEPTH;
             width = DEFAULT_WIDTH;
         }
-
+        
         actors = new ArrayList<>();
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        view.setColor(Rabbit.class, Color.ORANGE);
-        view.setColor(Fox.class, Color.BLUE);
+        view.setColor(Stegosaurus.class, Color.ORANGE);
+        view.setColor(TRex.class, Color.BLUE);
         view.setColor(Raptor.class, Color.CYAN);
         view.setColor(Triceratops.class, Color.MAGENTA);
         view.setColor(Plant.class, Color.GREEN);
         // Setup a valid starting point.
         reset();
     }
-
+    
     /**
      * Run the simulation from its current state for a reasonably long period,
      * (4000 steps).
@@ -85,7 +87,7 @@ public class Simulator
     {
         simulate(4000);
     }
-
+    
     /**
      * Run the simulation from its current state for the given number of steps.
      * Stop before the given number of steps if it ceases to be viable.
@@ -98,21 +100,22 @@ public class Simulator
             // delay(60);   // uncomment this to run more slowly
         }
     }
-
+    
     /**
      * Run the simulation from its current state for a single step.
      * Iterate over the whole field updating the state of each
-     * fox and rabbit.
+     * tRex and stegosaurus.
      */
     public void simulateOneStep()
     {
-//        step++;
         TimeTrack.incrementStep();
+        Weather.changeWeather();
+//        Disease.spreadPandemic();
         time.setCurrentTime();
 
         // Provide space for newborn animals.
         List<Actor> newActors = new ArrayList<>();
-        // Let all rabbits act.
+        // Let all Stegosauruses act.
         for(Iterator<Actor> it = actors.iterator(); it.hasNext(); ) {
             Actor actor = it.next();
             if (TimeTrack.getIsDay()) {
@@ -125,35 +128,35 @@ public class Simulator
                     actor.act(newActors);
                 }
             }
-            if(! actor.isAlive()) {
+            if(!actor.isAlive()) {
                 it.remove();
             }
         }
-
-        // Add the newly born foxes and rabbits to the main lists.
+               
+        // Add the newly born tRexes and stegosauruss to the main lists.
         actors.addAll(newActors);
 
         view.showStatus(TimeTrack.getStep(), field);
     }
-
+        
     /**
      * Reset the simulation to a starting position.
      */
     public void reset()
     {
-        // step = 0;
+        // step = 0
         TimeTrack.setStep(0);
         time.setCurrentTime();
 
         actors.clear();
         populate();
-
+        
         // Show the starting state in the view.
         view.showStatus(TimeTrack.getStep(), field);
     }
-
+    
     /**
-     * Randomly populate the field with foxes and rabbits.
+     * Randomly populate the field with Actors.
      */
     private void populate()
     {
@@ -161,27 +164,27 @@ public class Simulator
         field.clear();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
+                if(rand.nextDouble() <= tRex_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location);
-                    actors.add(fox);
+                    TRex TRex = new TRex(true, field, location);
+                    actors.add(TRex);
                 }
-                else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
+                else if(rand.nextDouble() <= stegosaurus_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location);
-                    actors.add(rabbit);
+                    Stegosaurus stegosaurus = new Stegosaurus(true, field, location);
+                    actors.add(stegosaurus);
                 }
                 else if(rand.nextDouble() <= RAPTOR_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Raptor raptor = new Raptor(true, field, location);
                     actors.add(raptor);
-                    // else leave the location empty.
+                // else leave the location empty.
                 }
                 else if(rand.nextDouble() <= TRICERATOPS_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Triceratops triceratops = new Triceratops(true, field, location);
                     actors.add(triceratops);
-                    // else leave the location empty.
+                // else leave the location empty.
                 }
                 else if(rand.nextDouble() <= PLANT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
@@ -192,7 +195,7 @@ public class Simulator
             }
         }
     }
-
+    
     /**
      * Pause for a given time.
      * @param millisec  The time to pause for, in milliseconds

@@ -40,4 +40,18 @@ public class Plant extends Actor
         location = newLocation;
         field.place(this, newLocation);
     }
+
+    /**
+     * Indicate that the animal is no longer alive.
+     * It is removed from the field.
+     */
+    protected void setDead()
+    {
+        active = false;
+        if(location != null) {
+            field.clear(location);
+            location = null;
+            field = null;
+        }
+    }
 }

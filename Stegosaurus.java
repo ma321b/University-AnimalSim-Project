@@ -1,43 +1,46 @@
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 /**
- * A simple model of a rabbit.
- * Rabbits age, move, breed, and die.
- * 
+ * A simple model of a stegosaurus.
+ * Stegosauruses age, move, breed, and die.
+ *
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29 (2)
  */
-public class Rabbit extends Prey
+public class Stegosaurus extends Prey
 {
-    // Characteristics shared by all rabbits (class variables).
+    // Characteristics shared by all stegosaurus (class variables).
 
-    // The age at which a rabbit can start to breed.
+    // The age at which a stegosaurus can start to breed.
     private static final int BREEDING_AGE = 5;
-    // The age to which a rabbit can live.
+    // The age to which a stegosaurus can live.
     private static final int MAX_AGE = 40;
-    // The likelihood of a rabbit breeding.
+    // The likelihood of a stegosaurus breeding.
     private static final double BREEDING_PROBABILITY = 0.12;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 10;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    
+
+    private static final int PLANT_FOOD_VALUE = 10;
+
     // Individual characteristics (instance fields).
-    
-    // The rabbit's age.
+
+    // The stegosaurus's age.
     private int age;
 
+    private int foodLevel;
+
     /**
-     * Create a new rabbit. A rabbit may be created with age
+     * Create a new stegosaurus. A stegosaurus may be created with age
      * zero (a new born) or with a random age.
-     * 
-     * @param randomAge If true, the rabbit will have a random age.
+     *
+     * @param randomAge If true, the stegosaurus will have a random age.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Rabbit(boolean randomAge, Field field, Location location)
+    public Stegosaurus(boolean randomAge, Field field, Location location)
     {
         super(field, location);
         age = 0;
@@ -45,17 +48,18 @@ public class Rabbit extends Prey
             age = rand.nextInt(MAX_AGE);
         }
     }
-    
+
     /**
-     * This is what the rabbit does most of the time - it runs 
+     * This is what the stegosaurus does most of the time - it runs
      * around. Sometimes it will breed or die of old age.
-     * @param newRabbits A list to return newly born rabbits.
+     * @param newStegosaurus A list to return newly born stegosaurus.
      */
-    public void act(List<Actor> newRabbits)
+    public void act(List<Actor> newStegosaurus)
     {
         incrementAge();
         if(isAlive()) {
-            giveBirth(newRabbits);           
+            giveBirth(newStegosaurus);
+            super.findFood();
             // Try to move into a free location.
             Location newLocation = getField().freeAdjacentLocation(getLocation());
             if(newLocation != null) {
@@ -70,7 +74,7 @@ public class Rabbit extends Prey
 
     /**
      * Increase the age.
-     * This could result in the rabbit's death.
+     * This could result in the stegosaurus's death.
      */
     private void incrementAge()
     {
@@ -79,26 +83,26 @@ public class Rabbit extends Prey
             setDead();
         }
     }
-    
+
     /**
-     * Check whether or not this rabbit is to give birth at this step.
+     * Check whether or not this stegosaurus is to give birth at this step.
      * New births will be made into free adjacent locations.
-     * @param newRabbits A list to return newly born rabbits.
+     * @param newStegosaurus A list to return newly born stegosauruss.
      */
-    public void giveBirth(List<Actor> newRabbits)
+    public void giveBirth(List<Actor> newStegosaurus)
     {
-        // New rabbits are born into adjacent locations.
+        // New stegosaurus are born into adjacent locations.
         // Get a list of adjacent free locations.
         Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Rabbit young = new Rabbit(false, field, loc);
-            newRabbits.add(young);
+            Stegosaurus young = new Stegosaurus(false, field, loc);
+            newStegosaurus.add(young);
         }
     }
-        
+
     /**
      * Generate a number representing the number of births,
      * if it can breed.
@@ -114,8 +118,8 @@ public class Rabbit extends Prey
     }
 
     /**
-     * A rabbit can breed if it has reached the breeding age.
-     * @return true if the rabbit can breed, false otherwise.
+     * A Stegosaurus can breed if it has reached the breeding age.
+     * @return true if the Stegosaurus can breed, false otherwise.
      */
     private boolean canBreed()
     {
@@ -128,12 +132,27 @@ public class Rabbit extends Prey
         List<Location> adjacent = field.adjacentLocations(getLocation());
         for (Location where : adjacent) {
             Object animal = field.getObjectAt(where);
-            if (age >= BREEDING_AGE && animal instanceof Rabbit) {
+            if (age >= BREEDING_AGE && animal instanceof Stegosaurus) {
                 if (((Animal) animal).isMale() != this.isMale()) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * Make this tRex more hungry. This could result in the tRex's death.
+     */
+    private void incrementHunger()
+    {
+        foodLevel--;
+        if(foodLevel <= 0) {
+            setDead();
+        }
+    }
+
+    public void satisfyHunger(){
+        foodLevel += PLANT_FOOD_VALUE;
     }
 }

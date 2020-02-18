@@ -1,5 +1,9 @@
 public class TimeTrack
 {
+    // step field from simulator in here
+    // also all other time related methods.
+    // make a new object of this class in constructor of simulator class
+
     private static int step;
     private static int currentTime;
     private static boolean isDay;
@@ -136,7 +140,7 @@ public class TimeTrack
      */
     private static String getTimeString()
     {
-        return getHoursString() + ":" + getMinutesString();
+        return getHoursString() + ":" + getMinutesString() + " - ";
     }
 
     /**

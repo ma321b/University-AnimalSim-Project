@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Iterator;
 
 /**
  * Abstract class Predator - write a description of the class here
@@ -9,19 +10,21 @@ import java.util.List;
 public abstract class Predator extends Animal
 {
     // instance variables - replace the example below with your own
+
     public Predator(Field field , Location location)
     {
         super(field, location);
     }
-    
+
     /**
-     * This is what the fox does most of the time: it hunts for
-     * rabbits. In the process, it might breed, die of hunger,
+     * This is what the tRex does most of the time: it hunts for
+     * stegosauruss. In the process, it might breed, die of hunger,
      * or die of old age.
      * @param newPredators A list to return newly born predators.
      */
     public void act(List<Actor> newPredators)
     {
+
         if (isAlive()) {
             giveBirth(newPredators);
             // Move towards a source of food if found.
@@ -38,11 +41,34 @@ public abstract class Predator extends Animal
                 setDead();
             }
         }
+
+    }
+    /**
+     * Look for stegosauruss adjacent to the current location.
+     * Only the first live stegosaurus is eaten.
+     * @return Where food was found, or null if it wasn't.
+     */
+    public Location findFood()
+    {
+        Field field = getField();
+        List<Location> adjacent = field.adjacentLocations(getLocation());
+        Iterator<Location> it = adjacent.iterator();
+        while(it.hasNext()) {
+            Location where = it.next();
+            Object actor = field.getObjectAt(where);
+            if(actor instanceof Prey) {
+                Prey prey = (Prey) actor;
+                if(prey.isAlive()) {
+                    prey.setDead();
+                    satisfyHunger();
+                    return where;
+                }
+            }
+        }
+        return null;
     }
 
     abstract public void giveBirth(List<Actor> newPredators);
 
-    abstract public Location findFood();
-    
-    
+    abstract public void satisfyHunger();
 }

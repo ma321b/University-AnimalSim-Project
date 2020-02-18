@@ -20,6 +20,8 @@ public abstract class Animal extends Actor
     private Location location;
     // animal's gender.
     private boolean male;
+    // Whether the animal is diseased
+    private boolean diseased;
     
     /**
      * Create a new animal at location in field.
@@ -30,6 +32,7 @@ public abstract class Animal extends Actor
     public Animal(Field field, Location location)
     {
         Random rand = new Random();
+        diseased = false;
         male = rand.nextBoolean();
         alive = true;
         this.field = field;
@@ -44,15 +47,6 @@ public abstract class Animal extends Actor
     abstract public void act(List<Actor> newActors);
 
     /**
-     * Check whether the animal is alive or not.
-     * @return true if the animal is still alive.
-     */
-    protected boolean isAlive()
-    {
-        return alive;
-    }
-
-    /**
      * Indicate that the animal is no longer alive.
      * It is removed from the field.
      */
@@ -64,15 +58,6 @@ public abstract class Animal extends Actor
             location = null;
             field = null;
         }
-    }
-
-    /**
-     * Return the animal's location.
-     * @return The animal's location.
-     */
-    protected Location getLocation()
-    {
-        return location;
     }
     
     /**
@@ -87,6 +72,22 @@ public abstract class Animal extends Actor
         location = newLocation;
         field.place(this, newLocation);
     }
+
+    /**
+     * Set the animal as diseased
+     */
+    public void setDiseased()
+    {
+        diseased = true;
+    }
+
+    /**
+     * Set the animal as healthy (undiseased)
+     */
+    public void setHealthy()
+    {
+        diseased = false;
+    }
     
     /**
      * Return the animal's field.
@@ -97,11 +98,37 @@ public abstract class Animal extends Actor
         return field;
     }
     /**
-     * @return The boolean value to check if animal is male or not
+     * @return True if the animal is Male. Else return false.
      */
     protected boolean isMale()
     {
         return male;
+    }
+
+    /**
+     * Check whether the animal is alive or not.
+     * @return true if the animal is still alive.
+     */
+    protected boolean isAlive()
+    {
+        return alive;
+    }
+
+    /**
+     * @return True if the animal is diseased. Else return false.
+     */
+    public boolean isDiseased()
+    {
+        return diseased;
+    }
+
+    /**
+     * Return the animal's location.
+     * @return The animal's location.
+     */
+    protected Location getLocation()
+    {
+        return location;
     }
 
     abstract public boolean mate();

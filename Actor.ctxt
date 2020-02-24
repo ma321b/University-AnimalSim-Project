@@ -1,8 +1,10 @@
 #BlueJ class context
 comment0.target=Actor
-comment0.text=\r\n\ Abstract\ class\ Actor\ -\ write\ a\ description\ of\ the\ class\ here\r\n\r\n\ @author\ (your\ name\ here)\r\n\ @version\ (version\ number\ or\ date\ here)\r\n
+comment0.text=\r\n\ Abstract\ class\ Actor\ which\ is\ a\ superclass\ to\ all\ elements\r\n\ which\ act\ in\ some\ way\ to\ affect\ the\ simulation.\r\n\r\n\ @author\ Muhammad\ Athar\ Abdullah\ (k19037983),\ Muhammad\ Ismail\ Kamdar(k19009749)\r\n
 comment1.params=newActors
 comment1.target=void\ act(java.util.List)
+comment1.text=\r\n\ (Abstract)\ Make\ the\ actors\ 'act'\ i.e.,\ make\ them\ do\r\n\ the\ usual\ stuff.\r\n\ @param\ newActors\ A\ list\ containing\ the\ new\ Actor\ objects\r\n
 comment2.params=
-comment2.target=boolean\ isAlive()
+comment2.target=boolean\ isActive()
+comment2.text=\r\n\ (Abstract)\r\n\ @return\ True\ if\ the\ Actor\ is\ alive.\ Else\ return\ false.\r\n
 numComments=3

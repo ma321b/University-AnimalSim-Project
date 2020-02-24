@@ -5,23 +5,24 @@ import java.util.Random;
  * A simple model of a stegosaurus.
  * Stegosauruses age, move, breed, and die.
  *
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (2)
+ * @author Muhammad Athar Abdullah (k19037983), Muhammad Ismail Kamdar(k19009749)
  */
 public class Stegosaurus extends Prey
 {
     // Characteristics shared by all stegosaurus (class variables).
 
     // The age at which a stegosaurus can start to breed.
-    private static final int BREEDING_AGE = 5;
+    private static final int BREEDING_AGE = 6;
     // The age to which a stegosaurus can live.
-    private static final int MAX_AGE = 40;
+    private static final int MAX_AGE = 100;
     // The likelihood of a stegosaurus breeding.
-    private static final double BREEDING_PROBABILITY = 0.12;
+    private static final double BREEDING_PROBABILITY = 0.1;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 10;
+    private static final int MAX_LITTER_SIZE = 5;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
+    
+    private static final int STEGOSAURUS_MAX_APETITE = 10;
 
     private static final int PLANT_FOOD_VALUE = 10;
 
@@ -43,33 +44,27 @@ public class Stegosaurus extends Prey
     public Stegosaurus(boolean randomAge, Field field, Location location)
     {
         super(field, location);
-        age = 0;
+        //age = 0;
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
+            foodLevel = rand.nextInt(STEGOSAURUS_MAX_APETITE);
         }
-    }
+        else {
+            age = 0;
+            foodLevel = PLANT_FOOD_VALUE;
+        }
+        }
 
     /**
      * This is what the stegosaurus does most of the time - it runs
-     * around. Sometimes it will breed or die of old age.
+     * around and eats plants. Sometimes it will breed or die of old age.
      * @param newStegosaurus A list to return newly born stegosaurus.
      */
     public void act(List<Actor> newStegosaurus)
     {
         incrementAge();
-        if(isAlive()) {
-            giveBirth(newStegosaurus);
-            super.findFood();
-            // Try to move into a free location.
-            Location newLocation = getField().freeAdjacentLocation(getLocation());
-            if(newLocation != null) {
-                setLocation(newLocation);
-            }
-            else {
-                // Overcrowding.
-                setDead();
-            }
-        }
+        incrementHunger();
+        super.act(newStegosaurus);
     }
 
     /**
@@ -82,6 +77,33 @@ public class Stegosaurus extends Prey
         if(age > MAX_AGE) {
             setDead();
         }
+    }
+    
+    /**
+     * Make this stegosaurus more hungry. This could result in the its death.
+     */
+    private void incrementHunger()
+    {
+        foodLevel--;
+        if(foodLevel <= 0) {
+            setDead();
+        }
+    }
+
+    /**
+     * @return The current food level of the stegosaurus.
+     */
+    public int getFoodLevel()
+    {
+        return foodLevel;
+    }
+
+    /**
+     * @return The maximum food level of the stegosaurus.
+     */
+    public int getMaxApetite()
+    {
+        return STEGOSAURUS_MAX_APETITE;
     }
 
     /**
@@ -126,6 +148,10 @@ public class Stegosaurus extends Prey
         return age >= BREEDING_AGE && mate();
     }
 
+    /**
+     * @return True if two same species are in adjacent fields and are
+     *         of an opposite gender. Return False otherwise.
+     */
     public boolean mate()
     {
         Field field = getField();
@@ -142,17 +168,16 @@ public class Stegosaurus extends Prey
     }
 
     /**
-     * Make this tRex more hungry. This could result in the tRex's death.
+     * Fill the stegosaurus's food level to a certain
+     * maximum level.
      */
-    private void incrementHunger()
+    public void satisfyHunger()
     {
-        foodLevel--;
-        if(foodLevel <= 0) {
-            setDead();
+        if ((foodLevel += PLANT_FOOD_VALUE) > STEGOSAURUS_MAX_APETITE){
+            foodLevel = STEGOSAURUS_MAX_APETITE;
         }
-    }
-
-    public void satisfyHunger(){
-        foodLevel += PLANT_FOOD_VALUE;
+        else {
+            foodLevel += PLANT_FOOD_VALUE;
+        }
     }
 }

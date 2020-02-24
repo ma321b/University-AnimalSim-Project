@@ -5,31 +5,31 @@ import java.util.Random;
 /**
  * Write a description of class Triceratops here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Muhammad Athar Abdullah (k19037983), Muhammad Ismail Kamdar(k19009749)
  */
 public class Triceratops extends Prey
 {
-    // Characteristics shared by all stegosauruss (class variables).
+    // Characteristics shared by all stegosaurus (class variables).
 
     // The age at which a stegosaurus can start to breed.
-    private static final int BREEDING_AGE = 5;
+    private static final int BREEDING_AGE = 4;
     // The age to which a stegosaurus can live.
-    private static final int MAX_AGE = 60;
+    private static final int MAX_AGE = 100;
     // The likelihood of a stegosaurus breeding.
     private static final double BREEDING_PROBABILITY = 0.15;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 9;
+    private static final int MAX_LITTER_SIZE = 6;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
 
     // Individual characteristics (instance fields).
-    private static final int PLANT_FOOD_VALUE = 10;
-
+    private static final int PLANT_FOOD_VALUE = 20;
     // The stegosaurus's age.
     private int age;
 
     private int foodLevel;
+    
+    private static final int TRICERATOPS_MAX_APETITE = 10;
 
     /**
      * Create a new stegosaurus. A stegosaurus may be created with age
@@ -42,9 +42,14 @@ public class Triceratops extends Prey
     public Triceratops(boolean randomAge, Field field, Location location)
     {
         super(field, location);
-        age = 0;
+        //age = 0;
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
+            foodLevel = rand.nextInt(TRICERATOPS_MAX_APETITE);
+        }
+        else {
+            age = 0;
+            foodLevel = PLANT_FOOD_VALUE;
         }
     }
 
@@ -56,19 +61,8 @@ public class Triceratops extends Prey
     public void act(List<Actor> newTriceratops)
     {
         incrementAge();
-        if(isAlive()) {
-            giveBirth(newTriceratops);
-            super.findFood();
-            // Try to move into a free location.
-            Location newLocation = getField().freeAdjacentLocation(getLocation());
-            if(newLocation != null) {
-                setLocation(newLocation);
-            }
-            else {
-                // Overcrowding.
-                setDead();
-            }
-        }
+        incrementHunger();
+        super.act(newTriceratops);
     }
 
     /**
@@ -79,6 +73,17 @@ public class Triceratops extends Prey
     {
         age++;
         if(age > MAX_AGE) {
+            setDead();
+        }
+    }
+    
+    /**
+     * Make this Triceratops more hungry. This could result in the its death.
+     */
+    private void incrementHunger()
+    {
+        foodLevel--;
+        if(foodLevel <= 0) {
             setDead();
         }
     }
@@ -125,8 +130,24 @@ public class Triceratops extends Prey
         return age >= BREEDING_AGE && mate();
     }
 
-    public void satisfyHunger(){
-        foodLevel += PLANT_FOOD_VALUE;
+    public void satisfyHunger()
+    {
+        if ((foodLevel += PLANT_FOOD_VALUE) > TRICERATOPS_MAX_APETITE){
+            foodLevel = TRICERATOPS_MAX_APETITE;
+        }
+        else {
+            foodLevel += PLANT_FOOD_VALUE;
+        }
+    }
+    
+    public int getFoodLevel()
+    {
+        return foodLevel;
+    }
+    
+    public int getMaxApetite()
+    {
+        return TRICERATOPS_MAX_APETITE;
     }
 
     /**

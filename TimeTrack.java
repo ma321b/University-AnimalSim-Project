@@ -1,3 +1,9 @@
+/**
+ * A class to keep track of the time and step in the simulation.
+ *
+ * @author Muhammad Athar Abdullah (k19037983), Muhammad Ismail Kamdar(k19009749)
+ */
+
 public class TimeTrack
 {
     // step field from simulator in here
@@ -11,6 +17,11 @@ public class TimeTrack
     private static int minutes;
 
     public TimeTrack()
+    {
+        reset();
+    }
+    
+    public void reset()
     {
         step = 0;
         currentTime = 0;
@@ -44,14 +55,12 @@ public class TimeTrack
 
     /**
      * Increment minutes in the simulation.
-     * (One minute in simulation is 4 steps)
+     * (10 minute in simulation is 1 steps)
      */
     private static void incrementMinutes()
     {
-        if (minutes < 59) {
-            if (checkDivisibleByFour()) {
-                minutes++;
-            }
+        if (minutes < 50) {
+                minutes += 10;
         }
         else {
             // Rollback
@@ -62,26 +71,16 @@ public class TimeTrack
     /**
      * Set the current time in simulation
      * according to the step of the simulation
-     * we're currently in. An hour is 240 steps
+     * we're currently in. An hour is 5 steps
      * long in our simulation.
      */
     public void setCurrentTime()
     {
-        if (step % 240 == 0 && step != 0) {
+        if (step % 6 == 0 && step != 0) {
             incrementCurrentTime();
         }
         setDayOrNight();
         incrementMinutes();
-    }
-
-    /**
-     * Set the value of step.
-     * @param stepValue the value to which the value of step
-     *                  should be set.
-     */
-    public static void setStep(int stepValue)
-    {
-        step = stepValue;
     }
 
     /**
@@ -127,20 +126,11 @@ public class TimeTrack
     }
 
     /**
-     * Checks if the step is divisible by four
-     * @return True if steps divisible by four. Else false.
-     */
-    private static boolean checkDivisibleByFour()
-    {
-        return step % 4 == 0 && step != 0;
-    }
-
-    /**
      * @return The String containing current time in the HH:MM format.
      */
     private static String getTimeString()
     {
-        return getHoursString() + ":" + getMinutesString() + " - ";
+        return getHoursString() + ":" + getMinutesString();
     }
 
     /**

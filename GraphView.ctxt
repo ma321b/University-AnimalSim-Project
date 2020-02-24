@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=GraphView
+comment0.text=\r\n\ The\ GraphView\ provides\ a\ view\ of\ two\ populations\ of\ actors\ in\ the\ field\ as\ a\ line\ graph\r\n\ over\ time.\ In\ its\ current\ version,\ it\ can\ only\ plot\ exactly\ two\ different\ classes\ of\ \r\n\ animals.\ If\ further\ animals\ are\ introduced,\ they\ will\ not\ currently\ be\ displayed.\r\n\r\n\ @author\ Muhammad\ Athar\ Abdullah\ (k19037983),\ Muhammad\ Ismail\ Kamdar(k19009749)\r\n\ @version\ 2016.03.18\r\n
+comment1.params=width\ height\ startMax
+comment1.target=GraphView(int,\ int,\ int)
+comment1.text=\r\n\ Constructor.\r\n\r\n\ @param\ width\ The\ width\ of\ the\ plotter\ window\ (in\ pixels).\r\n\ @param\ height\ The\ height\ of\ the\ plotter\ window\ (in\ pixels).\r\n\ @param\ startMax\ The\ initial\ maximum\ value\ for\ the\ y\ axis.\r\n
+comment2.params=actorClass\ color
+comment2.target=void\ setColor(java.lang.Class,\ java.awt.Color)
+comment2.text=\r\n\ Define\ a\ color\ to\ be\ used\ for\ a\ given\ class\ of\ animal.\r\n\ @param\ actorClass\ The\ actor's\ Class\ object.\r\n\ @param\ color\ The\ color\ to\ be\ used\ for\ the\ given\ class.\r\n
+comment3.params=step\ field
+comment3.target=void\ showStatus(int,\ Field)
+comment3.text=\r\n\ Show\ the\ current\ status\ of\ the\ field.\ The\ status\ is\ shown\ by\ displaying\ a\ line\ graph\ for\r\n\ two\ classes\ in\ the\ field.\ This\ view\ currently\ does\ not\ work\ for\ more\ (or\ fewer)\ than\ exactly\r\n\ two\ classes.\ If\ the\ field\ contains\ more\ than\ two\ different\ types\ of\ animal,\ only\ two\ of\ the\ classes\r\n\ will\ be\ plotted.\r\n\r\n\ @param\ step\ Which\ iteration\ step\ it\ is.\r\n\ @param\ field\ The\ field\ whose\ status\ is\ to\ be\ displayed.\r\n
+comment4.params=text
+comment4.target=void\ setInfoText(java.lang.String)
+comment4.text=\r\n\ Display\ a\ short\ information\ label\ at\ the\ top\ of\ the\ window.\r\n
+comment5.params=field
+comment5.target=boolean\ isViable(Field)
+comment5.text=\r\n\ Determine\ whether\ the\ simulation\ should\ continue\ to\ run.\r\n\ @return\ true\ If\ there\ is\ more\ than\ one\ species\ alive.\r\n
+comment6.params=
+comment6.target=void\ reset()
+comment6.text=\r\n\ Prepare\ for\ a\ new\ run.\r\n
+comment7.params=width\ height\ startMax
+comment7.target=javax.swing.JFrame\ makeFrame(int,\ int,\ int)
+comment7.text=\r\n\ Prepare\ the\ frame\ for\ the\ graph\ display.\r\n
+numComments=8

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Snow
+comment0.text=\r\n\ A\ subclass\ of\ weather\ for\ when\ it's\ Snowy\ weather.\r\n\r\n\ @author\ Muhammad\ Athar\ Abdullah\ (k19037983),\ Muhammad\ Ismail\ Kamdar(k19009749)\r\n
+comment1.params=
+comment1.target=Snow()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Snow\r\n
+comment2.params=
+comment2.target=java.lang.String\ getWeatherName()
+comment2.text=\r\n\ @return\ The\ current\ weather\ name\ (i.e.,\ Snow).\r\n
+numComments=3

@@ -2,36 +2,36 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * A simple model of a tRex.
- * TRex age, move, eat stegosauruses, and die.
+ * A simple model of a T-Rex.
+ * TRexes age, move, eat preys, and die.
  *
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (2)
+ * @author Muhammad Athar Abdullah (k19037983), Muhammad Ismail Kamdar(k19009749)
  */
 public class TRex extends Predator
 {
     // Characteristics shared by all tRexes (class variables).
 
     // The age at which a tRex can start to breed.
-    private static final int BREEDING_AGE = 8;
-    private static final int MAX_AGE = 150;
+    private static final int BREEDING_AGE = 4;
+    private static final int MAX_AGE = 80;
     // The likelihood of a tRex breeding.
-    private static final double BREEDING_PROBABILITY = 0.08;
+    private static final double BREEDING_PROBABILITY = 0.05;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 6;
-    // The food value of a single stegosaurus. In effect, this is the
+    private static final int MAX_LITTER_SIZE = 4;
+    // The food value of a single prey. In effect, this is the
     // number of steps a tRex can go before it has to eat again.
-    private static final int PREY_FOOD_VALUE = 9;
+    private static final int PREY_FOOD_VALUE = 20;
 
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
 
     // Individual characteristics (instance fields).
-
     // The tRex's age.
     private int age;
-    // The tRex's food level, which is increased by eating stegosauruss.
+    // The tRex's food level, which is increased by eating prey.
     private int foodLevel;
+    
+    private static final int TREX_MAX_APETITE = 40;
 
     /**
      * Create a tRex. A tRex can be created as a new born (age zero
@@ -46,7 +46,7 @@ public class TRex extends Predator
         super(field, location);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
-            foodLevel = rand.nextInt(PREY_FOOD_VALUE);
+            foodLevel = rand.nextInt(TREX_MAX_APETITE);
         }
         else {
             age = 0;
@@ -56,7 +56,7 @@ public class TRex extends Predator
 
     /**
      * This is what the tRex does most of the time: it hunts for
-     * Stegosauruses. In the process, it might breed, die of hunger,
+     * preys. In the process, it might breed, die of hunger,
      * or die of old age.
      * @param newTRexes A list to return newly born tRexes.
      */
@@ -91,9 +91,9 @@ public class TRex extends Predator
     /**
      * Check whether or not this tRex is to give birth at this step.
      * New births will be made into free adjacent locations.
-     * @param newTRexes A list to return newly born tRexes.
+     * @param newtRexes A list to return newly born tRexes.
      */
-    public void giveBirth(List<Actor> newTRexes)
+    public void giveBirth(List<Actor> newtRexes)
     {
         // New tRexes are born into adjacent locations.
         // Get a list of adjacent free locations.
@@ -103,13 +103,8 @@ public class TRex extends Predator
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
             TRex young = new TRex(false, field, loc);
-            newTRexes.add(young);
+            newtRexes.add(young);
         }
-    }
-
-    public void satisfyHunger()
-    {
-        foodLevel += PREY_FOOD_VALUE;
     }
 
     /**
@@ -151,5 +146,35 @@ public class TRex extends Predator
             }
         }
         return false;
+    }
+
+    /**
+     * Fill the TRex's food level to a certain
+     * maximum level.
+     */
+    public void satisfyHunger()
+    {
+        if ((foodLevel += PREY_FOOD_VALUE) > TREX_MAX_APETITE) {
+            foodLevel = TREX_MAX_APETITE;
+        }
+        else {
+            foodLevel += PREY_FOOD_VALUE;
+        }
+    }
+
+    /**
+     * @return The maximum food level of the TRex.
+     */
+    public int getMaxApetite()
+    {
+        return TREX_MAX_APETITE;
+    }
+
+    /**
+     * @return The current food level of the TRex.
+     */
+    public int getFoodLevel()
+    {
+        return foodLevel;
     }
 }

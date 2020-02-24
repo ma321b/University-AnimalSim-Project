@@ -1,6 +1,7 @@
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -8,14 +9,13 @@ import java.util.Random;
  * Represent a rectangular grid of field positions.
  * Each position is able to store a single animal.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @author Muhammad Athar Abdullah (k19037983), Muhammad Ismail Kamdar(k19009749)
  */
 public class Field
 {
     // A random number generator for providing random locations.
     private static final Random rand = Randomizer.getRandom();
-    
+
     // The depth and width of the field.
     private int depth, width;
     // Storage for the animals.
@@ -32,7 +32,7 @@ public class Field
         this.width = width;
         field = new Object[depth][width];
     }
-    
+
     /**
      * Empty the field.
      */
@@ -44,7 +44,7 @@ public class Field
             }
         }
     }
-    
+
     /**
      * Clear the given location.
      * @param location The location to clear.
@@ -53,7 +53,7 @@ public class Field
     {
         field[location.getRow()][location.getCol()] = null;
     }
-    
+
     /**
      * Place an actor at the given location.
      * If there is already an actor at the location it will
@@ -66,7 +66,7 @@ public class Field
     {
         place(actor, new Location(row, col));
     }
-    
+
     /**
      * Place an actor at the given location.
      * If there is already an actor at the location it will
@@ -78,7 +78,7 @@ public class Field
     {
         field[location.getRow()][location.getCol()] = actor;
     }
-    
+
     /**
      * Return the animal at the given location, if any.
      * @param location Where in the field.
@@ -88,7 +88,22 @@ public class Field
     {
         return getObjectAt(location.getRow(), location.getCol());
     }
-    
+
+    /**
+     * @return A List containing all the free locations in the field
+     */
+    public List<Location> getFreeLocations()
+    {
+        List<Location> freeLocations = new LinkedList<>();
+        List<Location> allLocations = Simulator.getLocationList();
+        for(Location next : allLocations) {
+            if(getObjectAt(next) == null) {
+                freeLocations.add(next);
+            }
+        }
+        return freeLocations;
+    }
+
     /**
      * Return the animal at the given location, if any.
      * @param row The desired row.
@@ -99,7 +114,7 @@ public class Field
     {
         return field[row][col];
     }
-    
+
     /**
      * Generate a random location that is adjacent to the
      * given location, or is the same location.
@@ -113,7 +128,23 @@ public class Field
         List<Location> adjacent = adjacentLocations(location);
         return adjacent.get(0);
     }
-    
+    /**
+     * Get a shuffled list of the free adjacent locations.
+     * @param location Get locations adjacent to this.
+     * @return A list of free adjacent locations.
+     */
+    public List<Location> getFreePlantAdjacentLocations(Location location)
+    {
+        List<Location> free = new LinkedList<>();
+        List<Location> adjacent = adjacentLocations(location);
+        for(Location next : adjacent) {
+            if (getObjectAt(next) == null) {
+                free.add(next);
+            }
+        }
+        return free;
+    }
+
     /**
      * Get a shuffled list of the free adjacent locations.
      * @param location Get locations adjacent to this.
@@ -124,13 +155,13 @@ public class Field
         List<Location> free = new LinkedList<>();
         List<Location> adjacent = adjacentLocations(location);
         for(Location next : adjacent) {
-            if(getObjectAt(next) == null) {
+            if (getObjectAt(next) == null){
                 free.add(next);
             }
         }
         return free;
     }
-    
+
     /**
      * Try to find a free location that is adjacent to the
      * given location. If there is none, return null.
@@ -178,7 +209,7 @@ public class Field
                     }
                 }
             }
-            
+
             // Shuffle the list. Several other methods rely on the list
             // being in a random order.
             Collections.shuffle(locations, rand);
@@ -194,7 +225,7 @@ public class Field
     {
         return depth;
     }
-    
+
     /**
      * Return the width of the field.
      * @return The width of the field.

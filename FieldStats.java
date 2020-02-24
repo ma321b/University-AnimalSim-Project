@@ -6,8 +6,7 @@ import java.util.HashMap;
  * of a field. It is flexible: it will create and maintain a counter 
  * for any class of object that is found within the field.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29
+ * @author Muhammad Athar Abdullah (k19037983), Muhammad Ismail Kamdar(k19009749)
  */
 public class FieldStats
 {
@@ -24,7 +23,7 @@ public class FieldStats
         // Set up a collection for counters for each type of animal that
         // we might find
         counters = new HashMap<>();
-        countsValid = true;
+        countsValid = false;
     }
 
     /**
@@ -45,6 +44,20 @@ public class FieldStats
             buffer.append(' ');
         }
         return buffer.toString();
+    }
+    
+    /**
+     * Get the number of individuals in the population of a given class.
+     * @return  An int with the number for this class.
+     */
+    public int getPopulationCount(Field field, Class key)
+    {
+        if(!countsValid) {
+            generateCounts(field);
+        }
+
+        Counter counter = counters.get(key);
+        return counter.getCount();
     }
     
     /**
@@ -106,8 +119,8 @@ public class FieldStats
     }
     
     /**
-     * Generate counts of the number of tRexes and stegosauruss.
-     * These are not kept up to date as tRexes and stegosauruss
+     * Generate counts of the number of tRexes and stegosaurus.
+     * These are not kept up to date as tRexes and stegosaurus
      * are placed in the field, but only when a request
      * is made for the information.
      * @param field The field to generate the stats for.

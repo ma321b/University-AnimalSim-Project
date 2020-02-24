@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Weather
+comment0.text=\r\n\ The\ abstract\ class\ for\ weathers\ in\ the\ simulation.\r\n\r\n\ @author\ Muhammad\ Athar\ Abdullah\ (k19037983),\ Muhammad\ Ismail\ Kamdar(k19009749)\r\n
+comment1.params=
+comment1.target=Weather()
+comment2.params=weather
+comment2.target=void\ addWeather(Weather)
+comment2.text=\r\n\ Add\ the\ weather\ to\ the\ weather\ list.\r\n\ @param\ weather\ The\ weather\ object\ to\ be\ added.\r\n
+comment3.params=weather
+comment3.target=void\ setWeather(Weather)
+comment3.text=\r\n\ Set\ the\ currentWeather\ to\ some\ weather\ object\r\n\ @param\ weather\ The\ Weather\ to\ be\ assigned.\r\n
+comment4.params=
+comment4.target=void\ setRandomWeather()
+comment4.text=\r\n\ Set\ a\ random\ weather\ in\ the\ simulation\r\n\ (from\ a\ list\ of\ all\ the\ weather\ types\ available).\r\n
+comment5.params=
+comment5.target=void\ changeWeather()
+comment5.text=\r\n\ Changes\ the\ current\ weather\ and\ sets\ a\r\n\ random\ weather\ randomly,\ after\ every\ 10\ steps\ in\ the\ simulation\r\n\ (i.e.,\ not\ always,\ so\ as\ to\ implement\ an\ entirely\ random\ behaviour).\r\n
+comment6.params=
+comment6.target=Weather\ getCurrentWeather()
+comment6.text=\r\n\ @return\ The\ current\ weather\ in\ the\ simulation\r\n
+comment7.params=
+comment7.target=java.lang.String\ getWeatherName()
+comment7.text=\r\n\ Abstract\ method\ to\ get\ the\ weatherName\ of\ current\ weather\r\n\ @return\ The\ current\ weather\ name.\r\n
+numComments=8

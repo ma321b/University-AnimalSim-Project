@@ -2,36 +2,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Weather
+/**
+ * The abstract class for weathers in the simulation.
+ *
+ * @author Muhammad Athar Abdullah (k19037983), Muhammad Ismail Kamdar(k19009749)
+ */
+public abstract class Weather
 {
     private static Random rand;
-    private static List<String> weatherList;
-    private static String currentWeather;
+    private static Weather currentWeather;
+    private static ArrayList<Weather> weatherList = new ArrayList<>();
 
     public Weather()
     {
         rand = new Random();
-        weatherList = new ArrayList<>();
-        initialiseWeatherList();
-        setRandomWeather();
+    }
+    
+    /**
+     * Add the weather to the weather list.
+     * @param weather The weather object to be added.
+     */
+    public static void addWeather(Weather weather)
+    {
+        weatherList.add(weather);
     }
 
     /**
-     * Initialise the Map, mapping integers
-     * to different weather types.
+     * Set the currentWeather to some weather object
+     * @param weather The Weather to be assigned.
      */
-    private void initialiseWeatherList()
+    public static void setWeather(Weather weather)
     {
-        weatherList.add("Sunny");
-        weatherList.add("Cloudy");
-        weatherList.add("Rainy");
-        weatherList.add("Foggy");
-        weatherList.add("Storm");
+        currentWeather = weather;
     }
-
+    
     /**
      * Set a random weather in the simulation
-     * (out of a list of all the weather types available)
+     * (from a list of all the weather types available).
      */
     private static void setRandomWeather()
     {
@@ -56,8 +63,14 @@ public class Weather
     /**
      * @return The current weather in the simulation
      */
-    public static String getCurrentWeather()
+    public static Weather getCurrentWeather()
     {
         return currentWeather;
     }
+
+    /**
+     * Abstract method to get the weatherName of current weather
+     * @return The current weather name.
+     */
+    public abstract String getWeatherName();
 }

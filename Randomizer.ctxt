@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Randomizer
-comment0.text=\r\n\ Provide\ control\ over\ the\ randomization\ of\ the\ simulation.\ By\ using\ the\ shared,\ fixed-seed\ \r\n\ randomizer,\ repeated\ runs\ will\ perform\ exactly\ the\ same\ (which\ helps\ with\ testing).\ Set\ \r\n\ 'useShared'\ to\ false\ to\ get\ different\ random\ behaviour\ every\ time.\r\n\ \r\n\ @author\ David\ J.\ Barnes\ and\ Michael\ K\u00F6lling\r\n\ @version\ 2016.02.29\r\n
+comment0.text=\r\n\ Provide\ control\ over\ the\ randomization\ of\ the\ simulation.\ By\ using\ the\ shared,\ fixed-seed\ \r\n\ randomizer,\ repeated\ runs\ will\ perform\ exactly\ the\ same\ (which\ helps\ with\ testing).\ Set\ \r\n\ 'useShared'\ to\ false\ to\ get\ different\ random\ behaviour\ every\ time.\r\n\ \r\n\ @author\ Muhammad\ Athar\ Abdullah\ (k19037983),\ Muhammad\ Ismail\ Kamdar(k19009749)\r\n
 comment1.params=
 comment1.target=Randomizer()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Randomizer\r\n

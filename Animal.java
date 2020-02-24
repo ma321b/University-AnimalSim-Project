@@ -7,8 +7,7 @@ import java.util.HashSet;
 /**
  * A class representing shared characteristics of animals.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2016.02.29 (2)
+ * @author Muhammad Athar Abdullah (k19037983), Muhammad Ismail Kamdar(k19009749)
  */
 public abstract class Animal extends Actor
 {
@@ -20,8 +19,6 @@ public abstract class Animal extends Actor
     private Location location;
     // animal's gender.
     private boolean male;
-    // Whether the animal is diseased
-    private boolean diseased;
     
     /**
      * Create a new animal at location in field.
@@ -32,7 +29,6 @@ public abstract class Animal extends Actor
     public Animal(Field field, Location location)
     {
         Random rand = new Random();
-        diseased = false;
         male = rand.nextBoolean();
         alive = true;
         this.field = field;
@@ -47,6 +43,15 @@ public abstract class Animal extends Actor
     abstract public void act(List<Actor> newActors);
 
     /**
+     * Check whether the animal is alive or not.
+     * @return true if the animal is still alive.
+     */
+    protected boolean isActive()
+    {
+        return alive;
+    }
+
+    /**
      * Indicate that the animal is no longer alive.
      * It is removed from the field.
      */
@@ -58,6 +63,15 @@ public abstract class Animal extends Actor
             location = null;
             field = null;
         }
+    }
+
+    /**
+     * Return the animal's location.
+     * @return The animal's location.
+     */
+    protected Location getLocation()
+    {
+        return location;
     }
     
     /**
@@ -72,22 +86,6 @@ public abstract class Animal extends Actor
         location = newLocation;
         field.place(this, newLocation);
     }
-
-    /**
-     * Set the animal as diseased
-     */
-    public void setDiseased()
-    {
-        diseased = true;
-    }
-
-    /**
-     * Set the animal as healthy (undiseased)
-     */
-    public void setHealthy()
-    {
-        diseased = false;
-    }
     
     /**
      * Return the animal's field.
@@ -97,8 +95,9 @@ public abstract class Animal extends Actor
     {
         return field;
     }
+    
     /**
-     * @return True if the animal is Male. Else return false.
+     * @return The boolean value to check if animal is male or not
      */
     protected boolean isMale()
     {
@@ -106,31 +105,9 @@ public abstract class Animal extends Actor
     }
 
     /**
-     * Check whether the animal is alive or not.
-     * @return true if the animal is still alive.
+     * @return True if two same species are in adjacent fields and are
+     *         of an opposite gender. Return False otherwise.
      */
-    protected boolean isAlive()
-    {
-        return alive;
-    }
-
-    /**
-     * @return True if the animal is diseased. Else return false.
-     */
-    public boolean isDiseased()
-    {
-        return diseased;
-    }
-
-    /**
-     * Return the animal's location.
-     * @return The animal's location.
-     */
-    protected Location getLocation()
-    {
-        return location;
-    }
-
     abstract public boolean mate();
 }
 
